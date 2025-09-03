@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8" />
+    <title>Məlumatları Yenilə</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <div class="container">
+        <h2>Məlumatları Yenilə</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Cari istifadəçi adı" required />
+            <input type="text" name="new_username" placeholder="Yeni istifadəçi adı (istəyə bağlı)" />
+            <input type="password" name="new_password" placeholder="Yeni şifrə (istəyə bağlı)" />
+            <button type="submit">Yenilə</button>
+        </form>
+
+        <div class="link">
+            <a href="{{ url_for('index') }}">Əsas səhifəyə qayıt</a>
+        </div>
+    </div>
+</body>
+</html>

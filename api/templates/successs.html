@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8" />
+    <title>Uğur</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <div class="container">
+        <h2>Uğurla tamamlandı!</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="link">
+            <a href="{{ url_for('index') }}">Əsas səhifəyə qayıt</a>
+        </div>
+    </div>
+</body>
+</html>

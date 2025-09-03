@@ -1,0 +1,235 @@
+/* ===== Ümumi ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #d9e7ff, #ffffff);
+    color: #0f1a36;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+}
+
+/* ===== Kart Konteyner ===== */
+.container {
+    background: #fff;
+    width: 420px;
+    max-width: 95vw;
+    border-radius: 20px;
+    padding: 40px 50px;
+    box-shadow:
+        0 12px 24px rgba(66, 133, 244, 0.25),
+        0 24px 48px rgba(52, 103, 214, 0.15);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(.4,0,.2,1), box-shadow 0.35s ease;
+}
+
+.container:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        0 20px 40px rgba(66, 133, 244, 0.45),
+        0 36px 72px rgba(52, 103, 214, 0.3);
+}
+
+/* Parlaq dalğa effekti arxa planda */
+.container::before {
+    content: '';
+    position: absolute;
+    width: 220%;
+    height: 220%;
+    background: radial-gradient(circle at top left, rgba(70, 130, 230, 0.15), transparent 70%);
+    top: -60%;
+    left: -60%;
+    transform: rotate(25deg);
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.container:hover::before {
+    opacity: 0.8;
+}
+
+/* ===== Başlıq ===== */
+h2 {
+    font-weight: 700;
+    font-size: 2.6rem;
+    margin-bottom: 35px;
+    text-align: center;
+    color: #2c4d9e;
+    text-shadow: 1px 1px 3px rgba(44, 77, 158, 0.25);
+}
+
+/* ===== Flash mesajlar ===== */
+.flash-message {
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 6px 12px rgba(52, 103, 214, 0.25);
+    border-left: 8px solid;
+    opacity: 0.95;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.flash-success {
+    background-color: #e6f0ff;
+    color: #1e3a8a;
+    border-color: #3b82f6;
+}
+
+.flash-error {
+    background-color: #ffe6e6;
+    color: #991b1b;
+    border-color: #ef4444;
+}
+
+/* ===== Form ===== */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Inputlar ===== */
+input[type="text"],
+input[type="password"] {
+    background: #f0f6ff;
+    border: 2.5px solid #aac8ff;
+    border-radius: 16px;
+    padding: 16px 20px;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #0f1a36;
+    margin-bottom: 28px;
+    transition:
+        border-color 0.35s cubic-bezier(.4,0,.2,1),
+        box-shadow 0.35s cubic-bezier(.4,0,.2,1);
+    box-shadow: inset 0 3px 8px rgba(66, 133, 244, 0.12);
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #6b7aaf;
+    font-weight: 400;
+    font-style: italic;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow:
+        0 0 12px 3px rgba(59, 130, 246, 0.6),
+        inset 0 4px 12px rgba(59, 130, 246, 0.25);
+    background: #ffffff;
+}
+
+/* ===== Düymə ===== */
+button {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 18px 0;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow:
+        0 10px 20px rgba(37, 99, 235, 0.6),
+        0 4px 6px rgba(14, 60, 200, 0.45);
+    transition:
+        background 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.25s ease;
+}
+
+button:hover,
+button:focus {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    box-shadow:
+        0 14px 28px rgba(30, 64, 175, 0.75),
+        0 6px 12px rgba(22, 43, 120, 0.6);
+    transform: translateY(-3px);
+    outline: none;
+}
+
+/* ===== Link bölməsi ===== */
+.link {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.link a {
+    color: #2563eb;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.link a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #2563eb;
+    bottom: -3px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.link a:hover {
+    color: #1e40af;
+}
+
+.link a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* ===== Media queries (mobil) ===== */
+@media (max-width: 480px) {
+    .container {
+        width: 95vw;
+        padding: 30px 25px;
+        border-radius: 18px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        padding: 14px 18px;
+        font-size: 1.05rem;
+    }
+
+    button {
+        font-size: 1.15rem;
+        padding: 16px 0;
+    }
+}
+
+/* ===== Animasiyalar ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 0.95;
+        transform: translateY(0);
+    }
+}
