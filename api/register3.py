@@ -1,3 +1,5 @@
+#isdemir nese problem var
+
 from flask import Flask, request, render_template, redirect, url_for, flash
 import csv
 import os
@@ -7,7 +9,8 @@ CSV_FILE = 'users.csv'
 if not os.path.exists(CSV_FILE):
     with open(CSV_FILE, 'w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
-        writer.writerow(['username', 'password'])
+        writer.writerow(['ad', 'soyad', 'email', 'username', 'password'])
+
 def read_users():
     users = []
     with open(CSV_FILE, 'r', newline='', encoding='utf-8') as file:
@@ -36,24 +39,30 @@ def index():
             return redirect(url_for('index'))
         elif action == 'register':
             return redirect(url_for('register'))
-    return render_template('index.html')
+    return render_template('indexx.html')
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
+        ad = request.form.get('ad', '').strip()
+        soyad = request.form.get('soyad', '').strip()
+        email = request.form.get('email', '').strip()
         username = request.form.get('username', '').strip()
         password = request.form.get('password', '').strip()
-        if not username or not password:
-            flash('Boş sahə ola bilməz', 'error')
+        password_repeat = request.form.get('password_repeat', '').strip()
+
+        print(f"ad={ad}, soyad={soyad}, email={email}, username={username}, password={password}, password_repeat={password_repeat}")
+
+        if not (ad and soyad and email and username and password and password_repeat):
+            flash('Bütün sahələri doldurun', 'error')
             return redirect(url_for('register'))
-        users = read_users()
-        if any(user['username'] == username for user in users):
-            flash('Bu istifadəçi adı artıq mövcuddur', 'error')
+
+        if password != password_repeat:
+            flash('Şifrələr uyğun gəlmir', 'error')
             return redirect(url_for('register'))
-        users.append({'username': username, 'password': password})
-        write_users(users)
-        flash('Qeydiyyat uğurla tamamlandı', 'success')
-        return redirect(url_for('success'))
-    return render_template('register.html')
+
+        # ... digər yoxlamalar və qeydiyyat
+
+
 @app.route('/update', methods=['GET', 'POST'])
 def update():
     if request.method == 'POST':
@@ -84,7 +93,7 @@ def update():
         write_users(updated_users)
         flash('Məlumatlar uğurla yeniləndi', 'success')
         return redirect(url_for('success'))
-    return render_template('update.html')
+    return render_template('updatee.html')
 @app.route('/delete', methods=['GET', 'POST'])
 def delete():
     if request.method == 'POST':
