@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: Cambria, Georgia, serif;
 }
 
 body {
@@ -21,10 +21,10 @@ body {
 /* HEADER bölməsi */
 .main-header {
   position: relative;
-  z-index: 10;
+  z-index: 100;
   height: 12vh; /* Başlıq üçün ekranın 12%-i */
   background-color: #F9F9F9;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 100px solid #ddd;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
@@ -66,16 +66,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 9px 0;
+  padding: 13px 0;
 }
 
 .nav-button {
   color: #fff;
   text-decoration: none;
-  margin: 0 10px;
+  margin: 50 10px;
   font-weight: 600;
   transition: background-color 0.3s ease, color 0.3s ease;
-  padding: 8px 16px;
+  padding: 8px 12px;
   border-radius: 4px;
 }
 
@@ -86,24 +86,24 @@ body {
 
 /* Şəkil bölməsi */
 .hero-image {
-  height: 88vh; /* Ekranın qalan 88%-i */
+  height: 100vh; 
   width: 100%;
   overflow: hidden;
   position: relative;
 }
 
 .hero-image img {
-  width: 100%;
+  width: 10%;
   height: 100%;
   object-fit: cover;
-  object-position: 59% 22%; /* horizontal 50% (orta), vertical 10% */
+  object-position: 1% 220%; /* horizontal 50% (orta), vertical 10% */
   display: block;
 }
 
 /* =========================== */
 /* ✅ Hero Image Bölməsi - Arxa fon bulanıq və overlay ilə */
 .hero-image {
-  height: 88vh;
+  height: 73.2vh;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -113,7 +113,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 59% 22%;
+  object-position: 100% 22%;
   display: block;
   filter: blur(4px); /* ✅ bulanıq effekt */
   transform: scale(1.05); /* Blur kənar itkilərini örtmək üçün */
@@ -130,4 +130,63 @@ body {
   background-color: rgba(10, 30, 60, 0.4); /* Tünd mavi overlay */
   z-index: 1;
 }
-
+.main-footer {
+  background-color:#1e3799;
+  padding: 10px 0;
+  font-family: 'Poppins', sans-serif;
+  color: #FFFFFF;
+}
+.footer-content.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+/* Üst hissə - əlaqə və ünvan */
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+/* Sol hissə: Əlaqə */
+.footer-left {
+  flex: 1;
+  min-width: 300px;
+}
+/* İki sütunlu əlaqə nömrələri */
+.contact-columns {
+  display: flex;
+  gap: 40px; /* Sütunlar arası məsafə */
+}
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+/* Sağ hissə: Ünvan */
+.footer-right {
+  flex: 1;
+  min-width: 300px;
+  text-align: right;
+}
+/* Aşağı hissə - ortalanmış copy text */
+.footer-bottom {
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+}
+.footer-right p {
+  margin-top: 24px; /* Burada dəyəri zövqə görə 20-30px arasında tənzimləyə bilərsən */
+}
+/* Əlaqə başlığını ortada yerləşdirmək */
+.contact-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+/* Əlaqə nömrələrini yan-yana düz */
+.contact-columns {
+  display: flex;
+  justify-content: center; /* Ortalanma üçün */
+  gap: 40px;
+}
