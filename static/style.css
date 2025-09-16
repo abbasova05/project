@@ -130,6 +130,36 @@ body {
   background-color: rgba(10, 30, 60, 0.4); /* Tünd mavi overlay */
   z-index: 1;
 }
+
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.image-text {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-70%, -30%);
+    background: rgba(0, 0, 0, 0.637);
+    color: white;
+    padding: 30px 50px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    border-radius: 25px;
+    max-width: 95%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
 .main-footer {
   background-color:#1e3799;
   padding: 10px 0;
