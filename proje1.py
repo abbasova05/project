@@ -89,16 +89,10 @@ def login():
     # Əgər istifadəçi artıq sessiyada varsa, birbaşa dashboard-a yönləndir
     if "user" in session:
         return redirect(url_for("dashboard"))
-
-    users = load_users()
-    if not users:
-        flash("İlk öncə qeydiyyatdan keçin.")
-        return redirect(url_for("qeydiyyat"))
-
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-
+        users = load_users()
         user = next((u for u in users if u["email"] == email), None)
         if user and check_password_hash(user["password"], password):
             session["user"] = user["email"]
@@ -106,8 +100,7 @@ def login():
             return redirect(url_for("dashboard"))
         else:
             flash("Email və ya şifrə yanlışdır!")
-        return redirect(url_for("login"))  # DOĞRU
-
+        return redirect(url_for("login"))
     return render_template("login.html")
 
 
