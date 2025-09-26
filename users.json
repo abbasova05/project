@@ -4,5 +4,12 @@
         "surname": "Abbasova",
         "email": "tttahmina@gmail.com",
         "password": "scrypt:32768:8:1$p6AiaQDOj0f1H0nK$4543b8744b92fd6d6197992c247fbe4038d1991b0f962a6581f4541694e6792aef93bfb67d7ef6e57ba0bb090ef31812aaa8d9ed3d5f9542498fdf85b7ad59b2"
+    },
+    {
+        "username": "Tehmine",
+        "surname": "Abbasova",
+        "role": "admin",
+        "email": "tahmina1234@gmail.com",
+        "password": "scrypt:32768:8:1$9V6waxQGTTc5O1df$487f3f67f6f6c595fa3a30d74d13f24981317728d8433bc245880e03cd1f63ad2328d8ba7c4d69d3a69cb9a58ab6c6af873f4c86f6a558a6e767fa47a5582bd0"
     }
 ]

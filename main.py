@@ -1,52 +1,29 @@
 from flask import Flask, request, render_template, redirect, url_for, flash, session
-import json
-import os
-import re
 from werkzeug.security import generate_password_hash, check_password_hash
+from user import load_users, save_users
+from password import is_strong_password
+from dotenv import load_dotenv
+import os
 
+# .env faylını yüklə
+load_dotenv()
+
+# Flask tətbiqini yarat
 app = Flask(__name__)
-app.secret_key = "supersecretkey"
 
-USERS_FILE = "users.json"
-
-# JSON fayl yoxdursa, boş siyahı ilə yaradılır
-if not os.path.exists(USERS_FILE):
-    with open(USERS_FILE, "w") as f:
-        json.dump([], f)
-
-# İstifadəçiləri fayldan yüklə
-def load_users():
-    try:
-        with open(USERS_FILE, "r") as f:
-            return json.load(f)
-    except json.JSONDecodeError:
-        return []
-
-# İstifadəçiləri fayla yadda saxla
-def save_users(users):
-    with open(USERS_FILE, "w") as f:
-        json.dump(users, f, indent=4)
-
-# Şifrənin güclü olub-olmadığını yoxla
-def is_strong_password(password):
-    if len(password) < 8:
-        return False
-    if not re.search(r"[A-Z]", password):
-        return False
-    if not re.search(r"[a-z]", password):
-        return False
-    if not re.search(r"[0-9]", password):
-        return False
-    if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
-        return False
-    return True
+# Gizli açarı mühit dəyişənindən oxu
+app.secret_key = os.getenv("SECRET_KEY")
 
 # Ana səhifə
 @app.route("/")
 def home():
     return render_template("home.html")
 
-# Qeydiyyat (register) səhifəsi
+@app.route("/əlaqə")
+def əlaqə():
+    return render_template("about.html")
+
+# Qeydiyyat
 @app.route("/qeydiyyat", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -83,17 +60,18 @@ def register():
 
     return render_template("register.html")
 
-# Login səhifəsi
+# Giriş
 @app.route("/giriş", methods=["GET", "POST"])
 def login():
-    # Əgər istifadəçi artıq sessiyada varsa, birbaşa dashboard-a yönləndir
     if "user" in session:
         return redirect(url_for("dashboard"))
+
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
         users = load_users()
         user = next((u for u in users if u["email"] == email), None)
+
         if user and check_password_hash(user["password"], password):
             session["user"] = user["email"]
             flash(f"Xoş gəldiniz, {user['username']}!")
@@ -101,10 +79,10 @@ def login():
         else:
             flash("Email və ya şifrə yanlışdır!")
         return redirect(url_for("login"))
+
     return render_template("login.html")
 
-
-# Dashboard səhifəsi
+# Dashboard
 @app.route("/dashboard")
 def dashboard():
     if "user" not in session:
@@ -120,12 +98,13 @@ def dashboard():
 
     return render_template("dashboard.html", user=user)
 
-# Logout (çıxış)
+# Çıxış
 @app.route("/logout")
 def logout():
     session.pop("user", None)
     flash("Siz çıxış etdiniz.")
     return redirect(url_for("login"))
 
+# Əsas giriş nöqtəsi
 if __name__ == "__main__":
     app.run(debug=True)
