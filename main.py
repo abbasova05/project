@@ -5,14 +5,13 @@ from password import is_strong_password
 from dotenv import load_dotenv
 import os
 
-# .env faylını yüklə
+# .env faylını yükləyirik
 load_dotenv()
 
-# Flask tətbiqini yarat
 app = Flask(__name__)
 
-# Gizli açarı mühit dəyişənindən oxu
 app.secret_key = os.getenv("SECRET_KEY")
+USERS_FILE = "users.json"
 
 # Ana səhifə
 @app.route("/")
@@ -97,6 +96,22 @@ def dashboard():
         return redirect(url_for("login"))
 
     return render_template("dashboard.html", user=user)
+
+# Admin səhifəsi
+@app.route("/admin")
+def admin():
+    if "user" not in session:
+        flash("Əvvəlcə daxil olun.")
+        return redirect(url_for("login"))
+
+    users = load_users()
+    user = next((u for u in users if u["email"] == session["user"]), None)
+
+    if user and user["role"] == "admin":
+        return render_template("admin.html", user=user)
+    else:
+        flash("Bu səhifəyə yalnız admin girə bilər!")
+        return redirect(url_for("dashboard"))
 
 # Çıxış
 @app.route("/logout")
