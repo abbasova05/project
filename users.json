@@ -1,8 +1,0 @@
-[
-    {
-        "username": "Tahmina",
-        "surname": "Abbasova",
-        "email": "tahminaa1@gmail.com",
-        "password": "scrypt:32768:8:1$MMBkzJKOgJvQmMil$79ce3cfba5b66ce2200da608ec17c788fb3f7d55c89a9b47d9a61da2ae949af917fe130226536211c062f044c10cc96599796218468d24bc2827aabecf99a5d1"
-    }
-]
