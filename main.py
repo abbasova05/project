@@ -112,7 +112,7 @@ def admin():
     else:
         flash("Bu səhifəyə yalnız admin girə bilər!")
         return redirect(url_for("dashboard"))
-
+#knnj
 # Çıxış
 @app.route("/logout")
 def logout():
