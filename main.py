@@ -17,9 +17,17 @@ USERS_FILE = "users.json"
 def home():
     return render_template("home.html")
 
+@app.route("/Haqqinda")
+def haqqinda():
+    return render_template("haqqinda.html")
+
 @app.route("/əlaqə")
 def əlaqə():
     return render_template("about.html")
+
+@app.route("/Ana_səhifə")
+def homee():
+    return render_template("ana_sehife.html")
 
 # Qeydiyyat
 @app.route("/qeydiyyat", methods=["GET", "POST"])
