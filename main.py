@@ -4,22 +4,24 @@ from user import load_users, save_users
 from password import is_strong_password
 from dotenv import load_dotenv
 import os
+from contactpage import contact_bp  
 
 # .env faylını yükləyirik
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY")  # SESSION üçün secret key
+app.secret_key = os.getenv("SECRET_KEY", "defaultsecret")  # SESSION üçün secret key
 USERS_FILE = "users.json"
+
+# contactpage-dəki blueprint-i burada qeydiyyatdan keçiririk
+app.register_blueprint(contact_bp)
+
 
 # Ana səhifə
 @app.route("/")
 def home():
     return render_template("home.html")
 
-@app.route("/əlaqə")
-def əlaqə():
-    return render_template("haqqında.html")
 
 @app.route("/haqqında")
 def haqqinda():
@@ -28,6 +30,7 @@ def haqqinda():
 @app.route("/Ana_səhifə")
 def homee():
     return render_template("ana_sehife.html")
+
 # Qeydiyyat
 @app.route("/qeydiyyat", methods=["GET", "POST"])
 def register():
@@ -132,6 +135,7 @@ def logout():
     session.pop("role", None)
     flash("Siz çıxış etdiniz.")
     return redirect(url_for("login"))
+
 
 # Əsas giriş nöqtəsi
 if __name__ == "__main__":
