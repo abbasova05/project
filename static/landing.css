@@ -9,7 +9,7 @@
 body {
   background-color: #f4f4f4;
   color: #333;
-  font-size: 18px; /* ✅ Buradan dəyişirsən ümumi yazı ölçüsünü */
+  font-size: 20px; /* ✅ Buradan dəyişirsən ümumi yazı ölçüsünü */
 }
 
 
@@ -40,7 +40,7 @@ header {
   background-color: #fff;
   color: #2c3e50;
   font-weight: 600;
-  font-size: 18px; /* ✅ Buradan dəyişirsən top bar yazı ölçüsünü */
+  font-size: 20px; /* ✅ Buradan dəyişirsən top bar yazı ölçüsünü */
 }
 
 .left-title,
@@ -83,12 +83,20 @@ h2 {
   padding-bottom: 10px;
 }
 
-.about p {
-  font-size: 18px;
-  margin-bottom: 10px;
-  text-align: left; /* ✅ Sola hizalanır */
-  line-height: 1.6; /* ✅ Oxunaqlılığı artırır */
+#about {
+  margin-top: 1px; /* Bölmənin yuxarıdan aralığı */
+  padding-top: 14px; /* İstəyə görə əlavə boşluq */
 }
+
+#about h2 {
+  margin-top: 20px; /* Başlığın yuxarı boşluğu */
+  margin-bottom: 15px; /* Başlıq ilə mətn arası məsafə */
+}
+
+#about p {
+  margin-top: 10px;
+}
+
 
 
 .faculty, .hall {
@@ -102,11 +110,11 @@ h2 {
 .faculty h3, .hall h3 {
   color: #254A84;
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .faculty p, .hall p {
-  font-size: 14px;
+  font-size: 20px;
   margin-bottom: 10px;
 }
 
@@ -130,7 +138,7 @@ footer {
   color: white;
   text-align: center;
   padding: 10px 10px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 /* Responsive */
