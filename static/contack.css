@@ -9,9 +9,15 @@
 }
 
 body {
-  font-family: Cambria, Georgia, serif;
-  background: linear-gradient(180deg, var(--bg), #eef0f6);
-  color: var(--text);
+    font-family: Cambria, Georgia, serif;
+    background: linear-gradient(135deg, #7095d6, #ffffff);
+    color: #111d3b;
+    margin: 0;
+    min-height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 19px 20px;
 }
 
 .container {
@@ -52,7 +58,7 @@ h1 {
 label { 
   margin-bottom: 6px; 
   font-weight: 600; 
-  color: var(--primary);
+  color: #2c4d9e;
   font-family: Cambria, Georgia, serif;   /* indi label-lər də Cambria */
   font-size: 15px;
 }
@@ -93,15 +99,23 @@ textarea {
   background-color: var(--primary); 
   color: #fff; 
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1.3rem;
   font-family: Cambria, Georgia, serif;  /* buton yazısı */
   cursor: pointer;
-  transition: 0.3s;
+  box-shadow:
+        0 12px 24px rgba(37, 99, 235, 0.6),
+        0 6px 12px rgba(14, 60, 200, 0.45);
+  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.25s ease;
 }
 
-.btn:hover {
-  background-color: rgba(var(--primary-color-rgb), 0.85);
-  transform: scale(1.05);
+button:hover,
+button:focus {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    box-shadow:
+        0 18px 36px rgba(30, 64, 175, 0.7),
+        0 8px 16px rgba(22, 43, 120, 0.6);
+    transform: translateY(-4px);
+    outline: none;
 }
 
 #alert {
