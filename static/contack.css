@@ -19,6 +19,25 @@ body {
     align-items: center;
     padding: 19px 20px;
 }
+.back-button {
+    position: absolute;
+    top: 150px;   
+    left: 150px;  
+    padding: 15px 24px;
+    background-color: #335AA2;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
 
 .container {
   height: 98dvh;

@@ -222,3 +222,65 @@ body {
   justify-content: center; /* Ortalanma üçün */
   gap: 40px;
 }
+@media (max-width: 768px) {
+  /* Body padding azalsın */
+  body {
+    padding: 10px;
+    font-size: 18px;
+  }
+  /* Top bar içindəki mətnlər daha kiçik və dik */
+  .top-bar {
+    flex-direction: column;
+    gap: 8px;
+    font-size: 18px;
+    text-align: center;
+  }
+  .left-title,
+  .right-title {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .logo {
+    height: 50px;
+  }
+  /* Naviqasiya xətti daha incə olsun */
+  .header-divider {
+    height: 12px;
+  }
+  /* Bölmə (section) aralığı */
+  section {
+    margin: 20px 10px;
+    padding: 0 10px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  .faculty h3, .hall h3 {
+    font-size: 18px;
+  }
+  .faculty p, .hall p {
+    font-size: 18px;
+  }
+  /* Şəkil ölçüsü kiçilsin */
+  img {
+    width: 100%;
+    height: auto;
+  }
+  /* Footer içində elementlər alt-alta düzülsün */
+  .footer-top {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  .footer-left, .footer-right {
+    text-align: center;
+    padding-right: 0;
+  }
+  .contact-columns {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-bottom {
+    font-size: 13px;
+  }
+}

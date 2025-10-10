@@ -64,6 +64,25 @@ header {
   width: 100%;
 }
 
+.back-button {
+    position: absolute;
+    top: 170px;   
+    left: 110px;  
+    padding: 15px 24px;
+    background-color: #335AA2;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
 
 /* =============================== */
 /* MƏZMUN: About və Fakultələr */

@@ -271,7 +271,7 @@ button:focus {
         0 14px 28px rgba(69, 136, 245, 0.3),
         0 30px 60px rgba(49, 99, 207, 0.2);
     margin: 40px auto;    /* Mərkəzləşdirmək üçün */
-    font-family: 'Poppins', sans-serif;
+    font-family: Cambria, Georgia, serif;
     color: #111d3b;
     position: relative;
     transition: transform 0.35s ease, box-shadow 0.35s ease;

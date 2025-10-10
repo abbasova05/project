@@ -134,7 +134,7 @@ def logout():
     session.pop("user", None)
     session.pop("role", None)
     flash("Siz çıxış etdiniz.")
-    return redirect(url_for("login"))
+    return redirect(url_for("home"))  # <== İndi əsas səhifəyə qaytarır
 
 
 # Əsas giriş nöqtəsi
