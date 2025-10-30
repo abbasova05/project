@@ -2,26 +2,26 @@ from flask import Flask, request, render_template, redirect, url_for, flash, ses
 from werkzeug.security import generate_password_hash, check_password_hash
 from user import load_users, save_users
 from password import is_strong_password
+from rezervasiya import rezerv, load_reservations, save_reservations
 from dotenv import load_dotenv
 import os
 from contactpage import contact_bp  
+from rezervasiya import rezerv
 
-# .env faylını yükləyirik
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY", "defaultsecret")  # SESSION üçün secret key
+app.secret_key = os.getenv("SECRET_KEY", "defaultsecret")
 USERS_FILE = "users.json"
 
-# contactpage-dəki blueprint-i burada qeydiyyatdan keçiririk
+# Blueprint-lər
 app.register_blueprint(contact_bp)
-
+app.register_blueprint(rezerv)
 
 # Ana səhifə
 @app.route("/")
 def home():
     return render_template("home.html")
-
 
 @app.route("/haqqında")
 def haqqinda():
@@ -31,6 +31,7 @@ def haqqinda():
 def homee():
     return render_template("ana_sehife.html")
 
+# Qeydiyyat
 # Qeydiyyat
 @app.route("/qeydiyyat", methods=["GET", "POST"])
 def register():
@@ -56,7 +57,6 @@ def register():
 
         hashed_password = generate_password_hash(password)
 
-        # İlk istifadəçi admin olsun, digərləri user
         role = "admin" if not users else "user"
 
         users.append({
@@ -67,19 +67,20 @@ def register():
             "role": role
         })
         save_users(users)
+
         session["user"] = email
         session["role"] = role
         flash(f"Qeydiyyat uğurla tamamlandı! Rolunuz: {role}")
+
+        # ✅ Qeydiyyatdan sonra dashboard-a yönləndiririk
         return redirect(url_for("dashboard"))
 
     return render_template("register.html")
 
+
 # Giriş
 @app.route("/giriş", methods=["GET", "POST"])
 def login():
-    if "user" in session:
-        return redirect(url_for("dashboard"))
-
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
@@ -89,7 +90,9 @@ def login():
         if user and check_password_hash(user["password"], password):
             session["user"] = user["email"]
             session["role"] = user["role"]
-            flash(f"Xoş gəldiniz, {user['username']}! Rolunuz: {user['role']}")
+            flash(f"Xoş gəldiniz, {user['username']}!")
+
+            # ✅ İstifadəçi dashboard-a yönləndirilir
             return redirect(url_for("dashboard"))
         else:
             flash("Email və ya şifrə yanlışdır!")
@@ -97,7 +100,29 @@ def login():
 
     return render_template("login.html")
 
-# Dashboard
+# Rezervasiya səhifəsi
+@app.route("/rezervasiya", methods=["GET", "POST"])
+def reserve():
+    if "user" not in session:
+        flash("Zəhmət olmasa əvvəlcə daxil olun.")
+        return redirect(url_for("login"))
+
+    if request.method == "POST":
+        user_email = session["user"]  # istifadəçi email
+        hall = request.form["hall"]
+        start = request.form["start"]
+        end = request.form["end"]
+
+        # Burada overlaping yoxlaması və rezervasiyanı əlavə et
+
+        flash("Rezervasiya uğurla tamamlandı!")
+        return redirect(url_for("rezerv.reserve"))
+
+    # GET request üçün mövcud rezervasiyaları göstər
+    reservations = load_reservations()  # nümunə funksiya
+    return render_template("rezervasiya.html", reservations=reservations)
+
+
 @app.route("/dashboard")
 def dashboard():
     if "user" not in session:
@@ -117,6 +142,7 @@ def dashboard():
 
     return render_template("dashboard.html", user=user)
 
+
 # Admin səhifəsi
 @app.route("/admin")
 def admin():
@@ -128,16 +154,24 @@ def admin():
     user = next((u for u in users if u["email"] == session["user"]), None)
     return render_template("admin.html", user=user, users=users)
 
+@app.route("/admin/reservations")
+def view_reservations():
+    if "user" not in session or session.get("role") != "admin":
+        flash("Bu səhifəyə yalnız admin girə bilər!")
+        return redirect(url_for("login"))
+
+    reservations = load_reservations()
+    return render_template("admin_reservations.html", reservations=reservations)
+
+
 # Çıxış
 @app.route("/logout")
 def logout():
     session.pop("user", None)
     session.pop("role", None)
     flash("Siz çıxış etdiniz.")
-    return redirect(url_for("home"))  # <== İndi əsas səhifəyə qaytarır
+    return redirect(url_for("home"))
 
-
-# Əsas giriş nöqtəsi
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
     app.run(debug=True, host="0.0.0.0", port=port)

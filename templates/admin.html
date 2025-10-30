@@ -10,8 +10,11 @@
     <div class="container">
         <h1>Xoş gəlmisiniz, {{ user.username }} (Admin)</h1>
         
-        <!-- Çıxış düyməsi -->
-        <p><a class="logout-btn" href="{{ url_for('logout') }}">Çıxış</a></p>
+        <!-- Çıxış və Rezervasiyaları yoxla düymələri -->
+        <p>
+            <a class="logout-btn" href="{{ url_for('logout') }}">Çıxış</a>
+            <a class="check-reservations-btn" href="{{ url_for('view_reservations') }}">Rezervasiyaları Yoxla</a>
+        </p>
 
         <h2>İstifadəçilər Siyahısı</h2>
         <table>
