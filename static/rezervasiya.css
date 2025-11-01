@@ -8,6 +8,7 @@
 
 body {
   background-color: #f4f4f4;
+  background: linear-gradient(135deg, #7095d6, #ffffff);
   color: #333;
   font-size: 20px;
   display: flex;
@@ -16,6 +17,7 @@ body {
   min-height: 100vh;
   padding: 40px 20px;
 }
+
 
 /* Başlıq */
 h1 {
