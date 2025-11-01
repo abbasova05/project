@@ -53,6 +53,40 @@
         "date": "2025-11-17",
         "start_time": "06:00",
         "end_time": "17:00",
-        "user": "tahmina@gmail.com"
+        "user": "tahmina@gmail.com",
+        "status": "deleted"
+    },
+    {
+        "hall": "Böyük zal",
+        "organization": "Təbiət elmləri",
+        "name": "Tahmina Abbasova",
+        "email": "tahmina@gmail.com",
+        "date": "2025-11-17",
+        "start_time": "06:00",
+        "end_time": "17:00",
+        "user": "tahmina@gmail.com",
+        "status": "deleted"
+    },
+    {
+        "hall": "Dairəvi masa",
+        "organization": "Mühəndislik",
+        "name": "Tahmina Abbasova",
+        "email": "tahmina@gmail.com",
+        "date": "2025-11-09",
+        "start_time": "06:00",
+        "end_time": "17:00",
+        "user": "tahmina@gmail.com",
+        "status": "deleted"
+    },
+    {
+        "hall": "digər",
+        "organization": "Təbiət elmləri",
+        "name": "Tehmine Abbasova",
+        "email": "tahmina@gmail.com",
+        "date": "2025-11-23",
+        "start_time": "05:00",
+        "end_time": "17:00",
+        "user": "tahmina@gmail.com",
+        "status": "active"
     }
 ]

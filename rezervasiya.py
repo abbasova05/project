@@ -21,7 +21,7 @@ def save_reservations(reservations):
     with open(RESERV_FILE, "w", encoding="utf-8") as f:
         json.dump(reservations, f, ensure_ascii=False, indent=4)
 
-# ---- Rezervasiya əlavə etmə səhifəsi ----
+# ---- Rezervasiya səhifəsi ----
 @rezerv.route("/rezervasiya", methods=["GET", "POST"])
 def reserve():
     if "user" not in session:
@@ -34,7 +34,6 @@ def reserve():
         hall = request.form.get("hall")
         organization = request.form.get("organization")
         name = request.form.get("name")
-        email = user_email  # avtomatik sessiyadan götürür
         date = request.form.get("date")
         start_time = request.form.get("start_time")
         end_time = request.form.get("end_time")
@@ -54,7 +53,7 @@ def reserve():
 
         # Eyni zal üçün vaxt üst-üstə düşməsin
         for r in reservations:
-            if r["hall"] == hall and r["date"] == date:
+            if r["hall"] == hall and r["date"] == date and r.get("status") != "deleted":
                 r_start = datetime.strptime(f"{r['date']} {r['start_time']}", "%Y-%m-%d %H:%M")
                 r_end = datetime.strptime(f"{r['date']} {r['end_time']}", "%Y-%m-%d %H:%M")
                 if not (end_dt <= r_start or start_dt >= r_end):
@@ -66,19 +65,20 @@ def reserve():
             "hall": hall,
             "organization": organization,
             "name": name,
-            "email": email,
+            "email": user_email,
             "date": date,
             "start_time": start_time,
             "end_time": end_time,
-            "user": user_email
+            "user": user_email,
+            "status": "active"  # status əlavə edildi
         })
         save_reservations(reservations)
         flash(f"Rezervasiya uğurla əlavə olundu: {hall} ({date} {start_time}-{end_time})")
-        return redirect(url_for("rezerv.reserve"))
+        return redirect(url_for("rezerv.my_reservations"))
 
-    return render_template("rezervasiya.html")
+    return render_template("rezervasiya.html", user_email=user_email)
 
-# ---- Öz rezervlərini görmək səhifəsi ----
+# ---- Öz rezervlərini görmək ----
 @rezerv.route("/menim_rezervlerim")
 def my_reservations():
     if "user" not in session:
@@ -86,10 +86,10 @@ def my_reservations():
         return redirect(url_for("login"))
 
     user_email = session["user"]
-    reservations = [r for r in load_reservations() if r.get("user") == user_email]
+    reservations = [r for r in load_reservations() if r.get("user") == user_email and r.get("status") != "deleted"]
     return render_template("menim_rezervlerim.html", reservations=reservations)
 
-# ---- Rezervasiyanı silmək ----
+# ---- Rezervasiyanı “silinmiş” kimi işarələmək ----
 @rezerv.route("/rezervasiya/sil/<int:index>", methods=["POST"])
 def delete_reservation(index):
     if "user" not in session:
@@ -99,13 +99,15 @@ def delete_reservation(index):
     user_email = session["user"]
     reservations = load_reservations()
 
-    user_reservations = [r for r in reservations if r.get("user") == user_email]
+    user_reservations = [r for r in reservations if r.get("user") == user_email and r.get("status") != "deleted"]
+
     if index < 0 or index >= len(user_reservations):
         flash("Belə rezerv tapılmadı!")
         return redirect(url_for("rezerv.my_reservations"))
 
     rez_to_delete = user_reservations[index]
-    reservations.remove(rez_to_delete)
+    rez_to_delete["status"] = "deleted"  # tam silmək əvəzinə işarələyirik
     save_reservations(reservations)
-    flash("Rezervasiya silindi.")
+
+    flash("Rezervasiya silindi (admin paneldə görünəcək).")
     return redirect(url_for("rezerv.my_reservations"))

@@ -70,7 +70,7 @@ def register():
 
         session["user"] = email
         session["role"] = role
-        flash(f"Qeydiyyat uğurla tamamlandı! Rolunuz: {role}")
+        flash(f"Qeydiyyat uğurla tamamlandı! Xoş gəldiniz, {username}!")
 
         # ✅ Qeydiyyatdan sonra dashboard-a yönləndiririk
         return redirect(url_for("dashboard"))
@@ -139,7 +139,15 @@ def view_reservations():
         return redirect(url_for("login"))
 
     reservations = load_reservations()
-    return render_template("admin_reservations.html", reservations=reservations)
+    active_reservations = [r for r in reservations if r.get("status") == "active"]
+    deleted_reservations = [r for r in reservations if r.get("status") == "deleted"]
+
+    return render_template(
+        "admin_reservations.html",
+        active_reservations=active_reservations,
+        deleted_reservations=deleted_reservations
+    )
+
 
 
 # Çıxış
