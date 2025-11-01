@@ -100,28 +100,6 @@ def login():
 
     return render_template("login.html")
 
-# Rezervasiya səhifəsi
-@app.route("/rezervasiya", methods=["GET", "POST"])
-def reserve():
-    if "user" not in session:
-        flash("Zəhmət olmasa əvvəlcə daxil olun.")
-        return redirect(url_for("login"))
-
-    if request.method == "POST":
-        user_email = session["user"]  # istifadəçi email
-        hall = request.form["hall"]
-        start = request.form["start"]
-        end = request.form["end"]
-
-        # Burada overlaping yoxlaması və rezervasiyanı əlavə et
-
-        flash("Rezervasiya uğurla tamamlandı!")
-        return redirect(url_for("rezerv.reserve"))
-
-    # GET request üçün mövcud rezervasiyaları göstər
-    reservations = load_reservations()  # nümunə funksiya
-    return render_template("rezervasiya.html", reservations=reservations)
-
 
 @app.route("/dashboard")
 def dashboard():
