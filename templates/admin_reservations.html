@@ -8,12 +8,14 @@
 <body>
     <div class="container">
         <h1>Bütün Rezervasiyalar</h1>
-        <p><a class="back-btn" href="{{ url_for('admin') }}">⬅ Admin Dashboard</a></p>
+        <p><a class="back-btn" href="{{ url_for('admin') }}">⬅ Admin </a></p>
 
         <table>
             <thead>
                 <tr>
+                    <th>Təşkilat adı</th>
                     <th>Ad</th>
+                    <th>Zall</th>
                     <th>Email</th>
                     <th>Tarix</th>
                     <th>Başlanğıc Vaxtı</th>
@@ -23,7 +25,9 @@
             <tbody>
                 {% for r in reservations %}
                 <tr>
+                    <td>{{ r.organization }}</td>
                     <td>{{ r.name }}</td>
+                    <td>{{ r.hall }}</td>
                     <td>{{ r.email }}</td>
                     <td>{{ r.date }}</td>
                     <td>{{ r.start_time }}</td>
