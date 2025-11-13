@@ -159,5 +159,6 @@ def logout():
     return redirect(url_for("home"))
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 5000))
-    app.run(debug=True, host="0.0.0.0", port=port)
+    port = int(os.getenv("PORT", 5001))  # burada default olaraq 5001 seçirik
+    app.run(debug=True, port=port)
+
