@@ -156,10 +156,14 @@ footer {
   background-color: #335AA2;
   color: white;
   text-align: center;
-  padding: 10px 10px;
+  padding: 10px;
   font-size: 18px;
-  
+  height: 160px; /* Burada uzunluğu dəyişə bilərsən */
+  width: 1500px; /* Burada eni dəyişə bilərsən, % və ya px istifadə oluna bilər */
+  max-width: 2500px; /* Maksimum eni */
+  margin: 0 auto; /* Mərkəzləşdirmək üçün */
 }
+
 
 /* Responsive */
 @media (max-width: 600px) {
@@ -205,7 +209,6 @@ footer {
 
 .footer-right {
   text-align: right;
-  padding-right: 280px;
   margin-top: 20px;
 }
 

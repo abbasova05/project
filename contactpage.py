@@ -126,5 +126,3 @@ def admin_messages():
     with open(JSON_PATH, "r", encoding="utf-8") as f:
         messages = json.load(f)
     return render_template("admin_messages.html", messages=messages, primary=PRIMARY)
-
-
