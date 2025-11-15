@@ -66,7 +66,7 @@ header {
 
 .back-button {
     position: absolute;
-    top: 90px;   
+    top: 175px;   
     left: 35px;  
     padding: 15px 24px;
     background-color: #335AA2;
@@ -152,6 +152,7 @@ img {
   display: block;
 }
 
+
 footer {
   background-color: #335AA2;
   color: white;
@@ -162,6 +163,43 @@ footer {
   width: 1500px; /* Burada eni dəyişə bilərsən, % və ya px istifadə oluna bilər */
   max-width: 2500px; /* Maksimum eni */
   margin: 0 auto; /* Mərkəzləşdirmək üçün */
+}
+.main-footer {
+  background-color: #1e3799;
+  padding: 10px 0;
+  color: #fff;
+  width: 99.5vw;     /* tam ekran genişliyi */
+  margin-left: calc(50% - 50vw); /* mərkəzləşdirilmiş layoutu sıfırlayır */
+}
+
+
+
+.footer-content.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #ccc;
+  padding-top: 17px;
+}
+
+
+.footer-left {
+  flex: 1;
+  min-width: 300px;
 }
 
 
