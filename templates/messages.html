@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <title>Əlaqə Mesajları</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Əlaqə Formundan Gələn Mesajlar</h1>
+
+        <a class="back-btn" href="{{ url_for('admin_dashboard') }}">← Admin Panelə Qayıt</a>
+
+        {% if messages %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Email</th>
+                    <th>Mesaj</th>
+                    <th>Tarix</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in messages %}
+                <tr>
+                    <td>{{ m.first_name }}</td>
+                    <td>{{ m.last_name }}</td>
+                    <td>{{ m.email }}</td>
+                    <td>{{ m.message }}</td>
+                    <td>{{ m.date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>Hələ heç bir mesaj yoxdur.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
