@@ -7,7 +7,7 @@ from contactpage import contact_bp
 from admin_panel import admin_bp
 from dotenv import load_dotenv
 import os
-import mysql.connector
+import mysql.connector # type: ignore
 
 
 # --- Yükləmələr və ayarlar ---
