@@ -7,6 +7,8 @@ from contactpage import contact_bp
 from admin_panel import admin_bp
 from dotenv import load_dotenv
 import os
+import mysql.connector
+
 
 # --- Yükləmələr və ayarlar ---
 load_dotenv()
@@ -17,6 +19,35 @@ USERS_FILE = "users.json"
 # --- Blueprint-lər ---
 app.register_blueprint(contact_bp)
 app.register_blueprint(rezerv)
+
+db_config = {
+    'host': os.environ.get('DB_HOST'),
+    'user': os.environ.get('DB_USER'),
+    'password': os.environ.get('DB_PASSWORD'),
+    'database': os.environ.get('DB_NAME'),
+    'port': int(os.environ.get('DB_PORT', 3306))
+}
+
+def get_db_connection():
+    conn = mysql.connector.connect(**db_config)
+    return conn
+@app.route('/reserve', methods=['POST'])
+def reserve():
+    name = request.form['name']
+    email = request.form['email']
+    date = request.form['date']
+    guests = int(request.form['guests'])
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "INSERT INTO reservations (name, email, date, guests) VALUES (%s, %s, %s, %s)",
+        (name, email, date, guests)
+    )
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return "Reservation successful!"
 
 # --- Ana səhifələr ---
 @app.route("/")
