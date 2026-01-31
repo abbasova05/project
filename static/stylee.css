@@ -4,22 +4,54 @@
     box-sizing: border-box;
 }
 
+/* ================= BODY ================= */
 body {
     font-family: Cambria, Georgia, serif;
     background: linear-gradient(135deg, #7095d6, #ffffff);
     color: #111d3b;
     margin: 0;
-    min-height: 95vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 30px;
+    position: relative;
 }
 
-/* ================= Geri qayıt düyməsi ================= */
+/* ================= BÖYÜK ÇƏRÇİVƏ ================= */
+body::before {
+    content: "";
+    position: absolute;
+    width: 1100px;
+    max-width: 95vw;
+    height: 680px;
+    max-height: 90vh;
+    background: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 30px 70px rgba(17, 29, 59, 0.25);
+}
+
+/* ================= SOL ŞƏKİL (ÇƏRÇİVƏNİN İÇİNDƏ) ================= */
+body::after {
+    content: "";
+    position: absolute;
+    left: calc(50% - 550px);
+    width: 550px;
+    height: 680px;
+    background:
+        linear-gradient(
+            rgba(17, 29, 59, 0.55),
+            rgba(17, 29, 59, 0.55)
+        ),
+        url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f")
+        center / cover no-repeat;
+    border-radius: 30px 0 0 30px;
+}
+
+/* ================= GERİ QAYIT ================= */
 .back-button {
     position: absolute;
-    top: 120px;
+    top: 80px;
     left: 30px;
     padding: 14px 22px;
     background-color: #335AA2;
@@ -28,118 +60,123 @@ body {
     color: #ffffff;
     cursor: pointer;
     font-size: 15px;
-    z-index: 1000;
+    z-index: 10;
 }
 
 .back-button:hover {
     background-color: #0056b3;
 }
 
-/* ================= Container ================= */
+/* ================= DAXİL OL KARTI (SƏNİN DİZAYN) ================= */
+/* ================= DAXİL OL / QEYDİYYAT KARTI ================= */
 .container {
-    background: #fff;
-    width: 470px;
-    max-width: 80vw;
+    background: #ffffff;
+    width: 420px;         /* bir az daraltdıq */
+    max-width: 85vw;
     border-radius: 30px;
-    padding: 10px 52px 40px;
+    padding: 20px 30px 30px;  /* padding bir az azaldıldı */
     box-shadow:
         0 14px 28px rgba(69, 136, 245, 0.3),
         0 30px 60px rgba(49, 99, 207, 0.2);
     position: relative;
     transition: transform 0.35s ease, box-shadow 0.35s ease;
+    margin-left: 550px;      /* şəkil sağında */
+    height: 85%;             /* böyük çərçivənin 85%-i */
+    max-height: 600px;       /* maksimum hündürlük */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
 }
 
 .container:hover {
     transform: translateY(-12px);
 }
 
-/* ================= Başlıq ================= */
+/* ================= BAŞLIQ ================= */
 h2 {
     font-size: 3rem;
     text-align: center;
     color: #2c4d9e;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
-/* ================= Flash mesaj ================= */
+/* ================= FLASH ================= */
 .flash-message {
     border-radius: 14px;
-    padding: 20px;
+    padding: 18px 22px;
     margin-bottom: 25px;
     font-weight: 600;
-    background: #ffe6e6;
-    color: #991b1b;
-    border-left: 8px solid #ef4444;
+    font-size: 1.05rem;
+    border-left: 8px solid;
 }
 
-/* ================= Form ================= */
+.flash-error {
+    background-color: #ffe6e6;
+    color: #991b1b;
+    border-color: #ef4444;
+}
+
+/* ================= FORM ================= */
 form {
     display: flex;
     flex-direction: column;
 }
 
+/* ================= INPUT ================= */
+input[type="text"],
 input[type="email"],
 input[type="password"] {
     background: #f0f6ff;
     border: 3px solid #aac8ff;
     border-radius: 25px;
-    padding: 16px 20px;
-    font-size: 1.2rem;
-    margin-bottom: 30px;
+    padding: 14px 18px;   /* əvvəl 16px 20px idi, azca kiçildildi */
+    font-size: 1.1rem;    /* əvvəl 1.15rem idi */
+    margin-bottom: 22px;  /* əvvəl 26px idi */
+    color: #0f1a36;
 }
 
 input:focus {
     outline: none;
     border-color: #3b82f6;
-    background: #fff;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
 }
 
-/* ================= Daxil ol düyməsi ================= */
-.login-button {
+/* ================= BUTTON ================= */
+form button {
     background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: #fff;
+    color: #ffffff;
     font-weight: 700;
-    font-size: 1.4rem;
-    padding: 19px 0;
+    font-size: 1.3rem;
+    padding: 18px 0;
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    box-shadow:
-        0 12px 24px rgba(37, 99, 235, 0.6),
-        0 6px 12px rgba(14, 60, 200, 0.45);
-    transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.25s ease;
 }
 
-.login-button:hover {
-    background: linear-gradient(135deg, #2563eb, #1e40af);
-    box-shadow:
-        0 18px 36px rgba(30, 64, 175, 0.7);
-    transform: translateY(-4px);
-}
-
-/* ================= Link ================= */
+/* ================= LINK ================= */
 .link {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 22px;
 }
 
-.link a {
-    color: #2563eb;
-    text-decoration: none;
-}
-
-.link a:hover {
-    text-decoration: underline;
-}
-
-/* ================= Mobil ================= */
-@media (max-width: 480px) {
-    .container {
-        width: 95vw;
-        padding: 25px;
+/* ================= MOBİL ================= */
+@media (max-width: 900px) {
+    body::after {
+        display: none;
     }
 
-    h2 {
-        font-size: 2.2rem;
+    body::before {
+        height: auto;
+        padding: 40px;
+    }
+
+    .container {
+        margin: 0;
+    }
+
+    .back-button {
+        left: 20px;
+        top: 20px;
     }
 }
