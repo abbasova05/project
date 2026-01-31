@@ -44,12 +44,12 @@ body {
 }
 
 .left-title img{
-  height: 65px;
+  height: 70px;
   width: auto;
   object-fit: contain;
 }
 .right-title img {
-  height: 60px;
+  height: 65px;
   width: auto;
   object-fit: contain;
 }

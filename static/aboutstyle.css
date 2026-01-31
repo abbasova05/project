@@ -51,6 +51,7 @@
             width: 100px;
             height: 100px;
             display: block;
+            box-shadow: none;
         }
         .left-logo img {
             object-fit: cover;
@@ -58,6 +59,7 @@
             width: 120px;
             height: 100px;
             display: block;
+            box-shadow: none;
         }
         
 .back-button {
