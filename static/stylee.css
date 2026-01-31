@@ -22,7 +22,7 @@ body {
     top: 120px;
     left: 30px;
     padding: 14px 22px;
-    background-color: #0b2a66; /* tünd mavi */
+    background-color: #335AA2;
     border: none;
     border-radius: 10px;
     color: #ffffff;
@@ -32,7 +32,7 @@ body {
 }
 
 .back-button:hover {
-    background-color: #081f4a;
+    background-color: #0056b3;
 }
 
 /* ================= Container ================= */
