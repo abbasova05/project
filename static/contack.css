@@ -1,11 +1,8 @@
-:root {
-  --primary: #335AA2;
-  --primary-color-rgb: 51, 90, 162;
-  --bg: #f5f6fa;
-  --card: #fff;
-  --border: #e5e7eb;
-  --text: #1f2937;
-  --label: #335AA2;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+/* ================= GENERAL ================= */
+* {
+    box-sizing: border-box;
 }
 
 body {
@@ -13,25 +10,40 @@ body {
     background: linear-gradient(135deg, #7095d6, #ffffff);
     color: #111d3b;
     margin: 0;
-    min-height: 95vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 19px 20px;
+    padding: 30px;
+    position: relative;
 }
 
-.back-button {    
+/* ================= BIG FRAME ================= */
+body::before {
+    content: "";
     position: absolute;
-    top: 100px;
+    width: 1100px;
+    max-width: 95vw;
+    height: 680px;
+    max-height: 90vh;
+    background: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 30px 70px rgba(17, 29, 59, 0.25);
+}
+
+/* ================= BACK BUTTON ================= */
+.back-button {
+    position: absolute;
+    top: 80px;
     left: 30px;
-    padding: 15px 24px;
+    padding: 14px 22px;
     background-color: #335AA2;
     border: none;
     border-radius: 10px;
-    color: white;
+    color: #ffffff;
     cursor: pointer;
-    font-size: 16px;
-    z-index: 1000;
+    font-size: 15px;
+    z-index: 10;
     transition: background-color 0.3s ease;
 }
 
@@ -39,121 +51,161 @@ body {
     background-color: #0056b3;
 }
 
-
-.container {
-  height: 98dvh;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  box-sizing: border-box;
+/* ================= BACKGROUND IMAGE (LEFT) ================= */
+.background-image {
+    position: absolute;
+    top: 50%;                     /* vertical mərkəz üçün */
+    left: 214px;                       /* sol tərəfə yapışdır */
+    width: 550px;
+    height: 680px;
+    border-radius: 30px 0 0 30px;
+    object-fit: cover;
+    z-index: 1;
+    transform: translateY(-50%);   /* top:50%-i düz mərkəzləşdirir */
 }
+
+.background-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(17,29,59,0.55), rgba(17,29,59,0.55));
+    border-radius: 30px 0 0 30px;
+    pointer-events: none;
+}
+
+/* ================= CONTAINER (RIGHT FORM) ================= */
+.container {
+    background: #ffffff;
+    width: 420px;
+    max-width: 85vw;
+    border-radius: 30px;
+    padding: 20px 30px 30px;
+    box-shadow:
+        0 14px 28px rgba(69, 136, 245, 0.3),
+        0 30px 60px rgba(49, 99, 207, 0.2);
+    position: relative;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    height: 85%;
+    max-height: 600px;
+    margin-left: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+}
+
+.container:hover {
+    transform: translateY(-12px);
+}
+
+/* ================= CARD (FORM INNER) ================= */
 .card {
-  background: var(--card);
-  border-radius: 20px;
-  padding: 32px;
-  max-width: 500px;
-  width: 100%;
-  max-height: 90dvh;
-  overflow-y: auto;
-  box-shadow: 0 15px 40px rgba(42,49,77,0.15);
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px;
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    box-shadow: none; /* container shadow artıq var */
 }
 
 h1 {
-  color: var(--primary);
-  font-size: 28px;
-  margin-bottom: 8px;
+    color: #2c4d9e; /* B rəngi saxladıq */
+    font-size: 28px;
+    margin-bottom: 8px;
 }
 
 .subtitle {
-  color: #475569;
-  margin-bottom: 24px;
+    color: #475569;
+    margin-bottom: 24px;
 }
 
-.field { 
-  display: flex; 
-  flex-direction: column; 
-  margin-bottom: 16px; 
-}
-
-label { 
-  margin-bottom: 6px; 
-  font-weight: 600; 
-  color: #2c4d9e;
-  font-family: Cambria, Georgia, serif;   /* indi label-lər də Cambria */
-  font-size: 15px;
-}
-
-input, textarea {
-  padding: 14px; 
-  border:1px solid var(--border); 
-  border-radius:12px;
-  font-size:15px; 
-  outline:none; 
-  transition: 0.2s;
-  font-family: Cambria, Georgia, serif;  /* sahə daxilindəki yazılar */
-}
-
-input:focus, textarea:focus { 
-  border-color: var(--primary); 
-  box-shadow:0 0 0 4px rgba(42,49,77,0.1); 
-}
-
-textarea { 
-  min-height:140px; 
-  resize: vertical; 
-}
-
+/* ================= FORM FIELDS ================= */
 .row { 
-  display: flex; 
-  gap:12px; 
-  flex-wrap:wrap; 
+    display: flex; 
+    gap: 12px; 
+    flex-wrap: wrap; 
 }
 
 .row .field { flex:1; }
 
+.field { 
+    display: flex; 
+    flex-direction: column; 
+    margin-bottom: 16px; 
+}
+
+label { 
+    margin-bottom: 6px; 
+    font-weight: 600; 
+    color: #2c4d9e;
+    font-size: 15px;
+    font-family: Cambria, Georgia, serif;
+}
+
+input, textarea {
+    padding: 14px;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    font-size:15px;
+    outline:none;
+    font-family: Cambria, Georgia, serif;
+    transition: 0.2s;
+}
+
+input:focus, textarea:focus { 
+    border-color: #335AA2; 
+    box-shadow:0 0 12px rgba(51,90,162,0.3); 
+}
+
+textarea { 
+    min-height:140px; 
+    resize: vertical; 
+}
+
+/* ================= BUTTON ================= */
 .btn {
-  width: 100%;
-  padding: 10px 14px;       /* incə buton */
-  border: none;
-  border-radius: 12px;
-  background-color: var(--primary); 
-  color: #fff; 
-  font-weight: 700;
-  font-size: 1.3rem;
-  font-family: Cambria, Georgia, serif;  /* buton yazısı */
-  cursor: pointer;
-  box-shadow:
-        0 12px 24px rgba(37, 99, 235, 0.6),
-        0 6px 12px rgba(14, 60, 200, 0.45);
-  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.25s ease;
+    width: 100%;
+    padding: 14px 0;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.35s ease;
 }
 
-.back-button:hover {
-    background-color: #0056b3;
-    /* transform və box-shadow yoxdur, düymə yerində qalır */
+.btn:hover {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
 }
 
-
+/* ================= ALERT ================= */
 #alert {
-  margin-top:12px;
-  padding:12px;
-  border-radius:12px;
-  font-size:14px;
-  line-height:1.4;
-  text-align:center;
+    margin-top:12px;
+    padding:12px;
+    border-radius:12px;
+    font-size:14px;
+    line-height:1.4;
+    text-align:center;
 }
 
+/* ================= SOCIALS ================= */
 .socials {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
 }
 
 .socials a {
-  font-size: 24px;
-  text-decoration: none;
-  transition: 0.3s;
+    font-size: 24px;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
 .socials a.facebook { color: #1877F2; }
@@ -167,30 +219,67 @@ textarea {
 .socials a.website { color: #2a52be; }
 
 .socials a:hover {
-  transform: scale(1.2);
-  opacity: 0.8;
+    transform: scale(1.2);
+    opacity: 0.8;
 }
 
+/* ================= ADDRESS ================= */
 .address {
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: center;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
 }
 
 .address a {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .address i {
-  color:#007BFF;
+    color:#007BFF;
 }
 
+/* ================= HONEYPOT ================= */
 .hp {
-  display: none;
+    display: none;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+    body::before {
+        height: auto;
+        padding: 40px;
+    }
+
+    .container {
+        margin: 0;
+        width: 95%;
+        padding: 20px;
+        height: auto;
+        max-height: none;
+    }
+
+    .back-button {
+        top: 20px;
+        left: 20px;
+    }
+
+    input, textarea {
+        padding: 10px 14px;
+        font-size: 0.95rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 12px 0;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
 }
