@@ -52,6 +52,13 @@
             height: 100px;
             display: block;
         }
+        .left-logo img {
+            object-fit: cover;
+            object-position: center;
+            width: 120px;
+            height: 100px;
+            display: block;
+        }
         
 .back-button {
     position: absolute;

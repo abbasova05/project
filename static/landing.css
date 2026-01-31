@@ -39,11 +39,16 @@ header {
   padding: 8px 20px;
   background-color: #fff;
   color: #2c3e50;
+  border-bottom: 0;
   font-weight: 600;
-  font-size: 20px; /* ✅ Buradan dəyişirsən top bar yazı ölçüsünü */
+  font-size: 1.1rem; /* ✅ Buradan dəyişirsən top bar yazı ölçüsünü */
 }
 
-.left-title,
+.left-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
 .right-title {
   display: flex;
   align-items: center;
@@ -56,6 +61,12 @@ header {
   margin-right: 10px;
   vertical-align: middle;
 }
+.left-title img{
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+}
+
 
 /* Naviqasiya yerinə sadəcə mavi xətt (yazısız) */
 .header-divider {

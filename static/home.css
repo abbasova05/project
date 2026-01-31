@@ -43,12 +43,29 @@ body {
   font-size: 1.1rem;
 }
 
-.left-title,
-.right-title {
+.left-title img{
+  height: 65px;
+  width: auto;
+  object-fit: contain;
+}
+.right-title img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+.left-title {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  white-space: nowrap;
 }
+
+
+.title-text {
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
 
 .logo {
   height: 60px;
